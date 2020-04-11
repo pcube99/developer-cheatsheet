@@ -19,56 +19,57 @@ db.collection_name.find()
 db.collection_name.find().pretty()
 ```
 ### 6) Create
+#### inserts one json object
 ```
-inserts one json object
 insertOne(data, options)
 ```
+#### inserts many json object
+
 ```
-inserts many json object
 insertMany(data, options)
 ```
 ### 7) Read
+#### finds all entries with given filter
 ```
-finds all entries with given filter
 find(filter, options)
 ```
+#### finds first matched entry with given filter
 ```
-finds first matched entry with given filter
 findOne(filter, options)
 ```
+#### greater than filter
 ```
-greater than filter
 db.flightData.find({distance: {$gt: 10000}}).pretty()
 ```
 
 ### 7) Update
+#### update first matched entry
 ```
-update first matched entry
 updateOne(filter, data, options)
 ```
+#### update all matched entry
 ```
-update all matched entry
 updateMany(filter,data, options)
 ```
+#### replace one document entirely
 ```
-replace one document entirely
 replaceOne(filter,data, options)
 ```
+#### updates distance field if not present then appends distance field
 ```
-updates distance field if not present then appends distance field
 db.flightData.updateOne({distance: 950},{ $set: {distance: 1200}})
 ```
+#### overwrites the whole document
 ```
-overwrites the whole document
 db.flightData.update({distance: 950}, {distance: 1200})
 ```
 ### 8) Delete
+#### delete first matched entry
 ```
-delete first matched entry
 deleteOne(filter, data, options)
 ```
+#### delete all matched entry
 ```
-delete all matched entry
 deleteMany(filter,data, options)
 ```
 ```
@@ -82,4 +83,14 @@ db.passengers.find().forEach((passenger) => { printjson(passenger)})
 ```
 db.passengers.find().toArray()
 ```
+### 10) projection to filter the data
+#### this includes \_id as default
+```
+db.passengers.find({}, {name: 1}).pretty()
+```
+#### to exclude \_id from projection
+```
+db.passengers.find({}, {name: 1, _id: 0}).pretty()
+```
+
 
