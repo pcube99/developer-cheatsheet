@@ -36,6 +36,11 @@ find(filter, options)
 finds first matched entry with given filter
 findOne(filter, options)
 ```
+```
+greater than filter
+db.flightData.find({distance: {$gt: 10000}}).pretty()
+```
+
 ### 7) Update
 ```
 update first matched entry
@@ -49,6 +54,14 @@ updateMany(filter,data, options)
 replace one document entirely
 replaceOne(filter,data, options)
 ```
+```
+updates distance field if not present then appends distance field
+db.flightData.updateOne({distance: 950},{ $set: {distance: 1200}})
+```
+```
+overwrites the whole document
+db.flightData.update({distance: 950}, {distance: 1200})
+```
 ### 8) Delete
 ```
 delete first matched entry
@@ -58,3 +71,15 @@ deleteOne(filter, data, options)
 delete all matched entry
 deleteMany(filter,data, options)
 ```
+```
+db.flightData.deleteOne({distance: 950})
+```
+### 8) forEach function to iterate collection
+```
+db.passengers.find().forEach((passenger) => { printjson(passenger)})
+```
+### 9) toArray() function to display all documents at once
+```
+db.passengers.find().toArray()
+```
+
